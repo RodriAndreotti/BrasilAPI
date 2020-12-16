@@ -107,3 +107,6 @@ dist
 
 # IDE
 .vscode/
+
+# Lockfile
+package-lock.json
