@@ -121,6 +121,55 @@ Busca por dados dos bancos brasileiros direto na base de dados do Bacen.
 ]
 ```
 
+### Serviços CPTEC 
+Este é um conjunto de rotas que visa abstrair o acesso aos dados do portal [CPTEC/INPE](http://servicos.cptec.inpe.br/XML/), os endpoints disponíveis estão à seguir:
+
+**GET** `https://brasilapi.com.br/api/cptec/v1/cities/[:name]` 
+
+Retorna a listagem de cidades com os respectivos códigos internos da CPTEC, este código é necessário para o funcionamento de alguns dos próximos endpoints.
+`[:name]` é opcional, quando informado retorna uma lista de cidades que correspondam ao termo informado. Por exemplo: 
+**GET** `https://brasilapi.com.br/api/cptec/v1/cities/Salvador` 
+  ``` json
+  [
+   {
+      "name":"Salvador",
+      "state":"BA",
+      "code":"242"
+   },
+   {
+      "name":"Salvador das Missões",
+      "state":"RS",
+      "code":"4505"
+   },
+   {
+      "name":"Salvador do Sul",
+      "state":"RS",
+      "code":"4506"
+   }
+]
+```
+
+
+**GET** `https://brasilapi.com.br/api/cptec/v1/weather/airport/:icaoCode` 
+
+Obtém as condições climáticas atuais no aeroporto informado
+**Exemplo de retorno:**
+```json
+{
+   "icao_code":"SBSP",
+   "last_update":"17/12/2020 17:00:00",
+   "pressure":"1014",
+   "visibility":">10000",
+   "wind":"25",
+   "wind_direction":"230",
+   "humidity":"58",
+   "weather_code":"ps",
+   "weather_desc":"Predomínio de Sol",
+   "temp":"28"
+}
+```
+
+
 ## Termos de Uso
 O BrasilAPI é uma iniciativa feita de brasileiros para brasileiros, por favor, não abuse deste serviço. Estamos em beta e ainda elaborando os Termos de Uso, mas por enquanto por favor não utilize formas automatizadas para fazer "crawling" dos dados da API. Um exemplo prático disto é um dos maiores provedores de telefonia do Brasil estar revalidando, neste exato momento, todos os Ceps (de `00000000` até `99999999`) e estourando em 5 vezes o limite atual da nossa conta no servidor. O volume de consulta dever ter a natureza de uma pessoa real requisitando um determinado dado. E para consultas com um alto volume automatizado, iremos mais para frente fornecer alguma solução, como por exemplo, conseguir fazer o download de toda a base de Ceps em uma única request.
 
