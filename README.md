@@ -128,8 +128,13 @@ Este é um conjunto de rotas que visa abstrair o acesso aos dados do portal [CPT
 
 Retorna a listagem de cidades com os respectivos códigos internos da CPTEC, este código é necessário para o funcionamento de alguns dos próximos endpoints.
 `[:name]` é opcional, quando informado retorna uma lista de cidades que correspondam ao termo informado. Por exemplo: 
-**GET** `https://brasilapi.com.br/api/cptec/v1/cities/Salvador` 
-  ``` json
+
+
+**GET** `https://brasilapi.com.br/api/cptec/v1/cities/Salvador`
+
+**Exemplo de retorno:**
+
+``` json
   [
    {
       "name":"Salvador",
@@ -153,7 +158,9 @@ Retorna a listagem de cidades com os respectivos códigos internos da CPTEC, est
 **GET** `https://brasilapi.com.br/api/cptec/v1/weather/airport/:icaoCode` 
 
 Obtém as condições climáticas atuais no aeroporto informado
+
 **Exemplo de retorno:**
+
 ```json
 {
    "icao_code":"SBSP",
@@ -195,6 +202,8 @@ Obtém uma lista com todas as capitais do Brasil juntamente com suas condições
 Obtém a previsão do tempo fornecida pelo CPTEC para a quantidade de dias informada (máximo 14 dias).
 Este endpoint encapsula 3 endpoints distintos do CPTEC que traziam as informações separadamente (*cidade/codigo_da_localidade/previsao.xml*, *cidade/7dias/codigo_da_localidade/previsao.xml* e *cidade/codigo_da_localidade/estendida.xml*) de forma a uniformizar a forma de acesso e tratar de forma mais efetiva os resultados.
 
+`[/:days] ` É opicional, quando omitido retorna a previsão para um dia
+
 **Exemplo de retorno:**
 ``` json
 {
@@ -228,6 +237,8 @@ Assim como o endpoint de previsão meteorológica, este agrega dois xmls do serv
 Novamente foi realizado um tratamento para retorno mais efetivo e organizado das informações.
 
 **Atenção:** Este endpoint **NÃO** é de Tábua das Marés, este serviço é fornecido pela Marinha do Brasil, e não pela CPTEC. São serviços diferentes, com informações diferentes. O serviço da CPTEC é focado em altitude de ondas e direção dos ventos e ondas.
+
+`[/:days] ` É opicional, quando omitido retorna a previsão para um dia
 
 **Exemplo de retorno:**
 ``` json
