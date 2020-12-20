@@ -168,6 +168,148 @@ Obtém as condições climáticas atuais no aeroporto informado
    "temp":"28"
 }
 ```
+**GET** /api/cptec/v1/weather/capital
+
+Obtém uma lista com todas as capitais do Brasil juntamente com suas condições climáticas atuais.
+
+**Exemplo de retorno:**
+``` json
+[
+  {
+    "icao_code": "SBAR",
+    "last_update": "2021-01-19T20:00:00.188Z",
+    "pressure": "1008",
+    "visibility": ">10000",
+    "wind": "54",
+    "wind_direction": "80",
+    "humidity": "71",
+    "weather_code": "ps",
+    "weather_desc": "Predomínio de Sol",
+    "temp": "28"
+  },
+  ...
+] 
+```
+**GET** `/api/cptec/v1/weather/prediction/:cityCode[/:days]`
+
+Obtém a previsão do tempo fornecida pelo CPTEC para a quantidade de dias informada (máximo 14 dias).
+Este endpoint encapsula 3 endpoints distintos do CPTEC que traziam as informações separadamente (*cidade/codigo_da_localidade/previsao.xml*, *cidade/7dias/codigo_da_localidade/previsao.xml* e *cidade/codigo_da_localidade/estendida.xml*) de forma a uniformizar a forma de acesso e tratar de forma mais efetiva os resultados.
+
+**Exemplo de retorno:**
+``` json
+{
+  "city_name": "Brejo Alegre",
+  "state": "SP",
+  "last_update": "2020-12-19",
+  "weather": [
+    {
+      "date": "2020-12-20",
+      "condition": "pt",
+      "min": "23",
+      "max": "33",
+      "uv_index": "13.0",
+      "condition_desc": "Pancadas de Chuva a Tarde"
+    },
+    {
+      "date": "2020-12-21",
+      "condition": "pt",
+      "min": "23",
+      "max": "35",
+      "uv_index": "13.0",
+      "condition_desc": "Pancadas de Chuva a Tarde"
+    }
+  ]
+}
+```
+**GET** `/api/cptec/v1/swell/:cityCode[/:days]`
+
+Esta rota retorna informações referentes as ondas nas cidades costeiras do Brasil, utilizando os XMLs de Ondas do CPTEC.
+Assim como o endpoint de previsão meteorológica, este agrega dois xmls do serviço da CPTEC (*cidade/codigo_da_localidade/dia/dia/ondas.xml* e *cidade/codigo_da_localidade/todos/tempos/ondas.xml*)
+Novamente foi realizado um tratamento para retorno mais efetivo e organizado das informações.
+
+**Atenção:** Este endpoint **NÃO** é de Tábua das Marés, este serviço é fornecido pela Marinha do Brasil, e não pela CPTEC. São serviços diferentes, com informações diferentes. O serviço da CPTEC é focado em altitude de ondas e direção dos ventos e ondas.
+
+**Exemplo de retorno:**
+``` json
+{
+  "city_name": "Rio de Janeiro",
+  "state": "RJ",
+  "last_update": "2020-12-19",
+  "swell": [
+    {
+      "date": "19-12-2020",
+      "swell_data": [
+        {
+          "wind": "0.8",
+          "wind_direction": "W",
+          "wave_height": "1.2",
+          "wave_direction": "E",
+          "agitation": "Fraco",
+          "hour": "00h Z"
+        },
+        {
+          "wind": "2.1",
+          "wind_direction": "NNE",
+          "wave_height": "1.2",
+          "wave_direction": "E",
+          "agitation": "Fraco",
+          "hour": "03h Z"
+        },
+        {
+          "wind": "1.4",
+          "wind_direction": "W",
+          "wave_height": "1.1",
+          "wave_direction": "E",
+          "agitation": "Fraco",
+          "hour": "06h Z"
+        },
+        {
+          "wind": "1.1",
+          "wind_direction": "SW",
+          "wave_height": "1.1",
+          "wave_direction": "E",
+          "agitation": "Fraco",
+          "hour": "09h Z"
+        },
+        {
+          "wind": "1.9",
+          "wind_direction": "S",
+          "wave_height": "1.1",
+          "wave_direction": "E",
+          "agitation": "Fraco",
+          "hour": "12h Z"
+        },
+        {
+          "wind": "2.7",
+          "wind_direction": "SE",
+          "wave_height": "1.0",
+          "wave_direction": "E",
+          "agitation": "Fraco",
+          "hour": "15h Z"
+        },
+        {
+          "wind": "3.8",
+          "wind_direction": "SE",
+          "wave_height": "1.0",
+          "wave_direction": "E",
+          "agitation": "Fraco",
+          "hour": "18h Z"
+        },
+        {
+          "wind": "3.9",
+          "wind_direction": "E",
+          "wave_height": "1.0",
+          "wave_direction": "E",
+          "agitation": "Fraco",
+          "hour": "21h Z"
+        }
+      ]
+    },
+    ...
+  ]
+}
+```
+Para maiores detalhes sobre o uso da API consulte a nossa [documentação](https://brasilapi.com.br/docs). 
 
 
 ## Termos de Uso
