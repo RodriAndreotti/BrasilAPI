@@ -153,6 +153,16 @@
     },
     "/banks/v1/{code}": {
       "get": {
+        "parameters": [
+          {
+            "in": "path",
+            "name": "code",
+            "required": true,
+            "schema": {
+              "type": "integer"
+            }
+          }
+        ],
         "tags": [
           "BANKS"
         ],
@@ -163,13 +173,12 @@
             "description": "Success",
             "content": {
               "application/json": {
-                "example":
-                  {
-                    "ispb": "00000000",
-                    "name": "BCO DO BRASIL S.A.",
-                    "code": 1,
-                    "fullName": "Banco do Brasil S.A."
-                  }
+                "example": {
+                  "ispb": "00000000",
+                  "name": "BCO DO BRASIL S.A.",
+                  "code": 1,
+                  "fullName": "Banco do Brasil S.A."
+                }
               }
             }
           },
@@ -177,11 +186,10 @@
             "description": "O código do banco não foi encontrado",
             "content": {
               "application/json": {
-                "example":
-                  {
-                    "message": "Código bancário não encontrado",
-                    "type": "BANK_CODE_NOT_FOUND"
-                  }
+                "example": {
+                  "message": "Código bancário não encontrado",
+                  "type": "BANK_CODE_NOT_FOUND"
+                }
               }
             }
           }
