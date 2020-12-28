@@ -155,7 +155,7 @@ Retorna a listagem de cidades com os respectivos códigos internos da CPTEC, est
 ```
 
 
-**GET** `https://brasilapi.com.br/api/cptec/v1/weather/airport/:icaoCode` 
+**GET** `/api/cptec/v1/weather/airport/:icaoCode` 
 
 Obtém as condições climáticas atuais no aeroporto informado
 
@@ -175,7 +175,7 @@ Obtém as condições climáticas atuais no aeroporto informado
    "temp":"28"
 }
 ```
-**GET** /api/cptec/v1/weather/capital
+**GET** `/api/cptec/v1/weather/capital`
 
 Obtém uma lista com todas as capitais do Brasil juntamente com suas condições climáticas atuais.
 
@@ -202,7 +202,7 @@ Obtém uma lista com todas as capitais do Brasil juntamente com suas condições
 Obtém a previsão do tempo fornecida pelo CPTEC para a quantidade de dias informada (máximo 14 dias).
 Este endpoint encapsula 3 endpoints distintos do CPTEC que traziam as informações separadamente (*cidade/codigo_da_localidade/previsao.xml*, *cidade/7dias/codigo_da_localidade/previsao.xml* e *cidade/codigo_da_localidade/estendida.xml*) de forma a uniformizar a forma de acesso e tratar de forma mais efetiva os resultados.
 
-`[/:days]` É opicional, quando omitido retorna a previsão para um dia
+`[/:days]` É opcional, quando omitido retorna a previsão para um dia
 
 **Exemplo de retorno:**
 ``` json
@@ -238,7 +238,7 @@ Novamente foi realizado um tratamento para retorno mais efetivo e organizado das
 
 **Atenção:** Este endpoint **NÃO** é de Tábua das Marés, este serviço é fornecido pela Marinha do Brasil, e não pela CPTEC. São serviços diferentes, com informações diferentes. O serviço da CPTEC é focado em altitude de ondas e direção dos ventos e ondas.
 
-`[/:days]` É opicional, quando omitido retorna a previsão para um dia
+`[/:days]` É opcional, quando omitido retorna a previsão para um dia
 
 **Exemplo de retorno:**
 ``` json
